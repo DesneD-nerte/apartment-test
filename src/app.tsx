@@ -1,10 +1,10 @@
 // import { BrowserRouter } from 'react-dom';
 
 import React from "react";
-import "./styles/styles.scss";
+import "./styles/styles.css";
 
 const App = () => {
-    return <div>Hello</div>;
+    return <div className="container">Hello</div>;
 };
 
 export default App;
