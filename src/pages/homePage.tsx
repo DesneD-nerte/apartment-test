@@ -1,8 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import ApartmentList from "../components/apartment/apartment-list/ApartmentList";
+import Header from "../components/header/Header";
 
 const HomePage = () => {
-    return <div>Main Page</div>;
+    return (
+        <>
+            <Header />
+            <main className="container">
+                <ApartmentList></ApartmentList>
+            </main>
+        </>
+    );
 };
 
 export default HomePage;
