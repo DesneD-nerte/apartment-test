@@ -6,6 +6,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "./dist"),
         filename: "bundle.js",
+        clean: true,
+        publicPath: "/",
     },
     devServer: {
         static: {
@@ -14,6 +16,7 @@ module.exports = {
         compress: true,
         port: 3000,
         hot: true,
+        historyApiFallback: true,
     },
     module: {
         rules: [
@@ -24,6 +27,7 @@ module.exports = {
                     loader: "babel-loader",
                     options: {
                         presets: ["@babel/preset-env"],
+                        cacheDirectory: true,
                     },
                 },
             },

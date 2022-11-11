@@ -1,10 +1,10 @@
-// import { BrowserRouter } from 'react-dom';
-
 import React from "react";
+import { RouterProvider } from "react-router-dom";
+import { AppRouter } from "./router/AppRouter";
 import "./styles/styles.css";
 
 const App = () => {
-    return <div className="container">Hello</div>;
+    return <RouterProvider router={AppRouter} />;
 };
 
 export default App;
