@@ -1,0 +1,13 @@
+.fluid {
+    width: 100%;
+    height: 100%;
+}
+
+img {
+    object-fit: contain;
+    max-height: 350px;
+}
+
+a:hover {
+    box-shadow: 0px 0px 50px 5px #b7b7b7;
+}

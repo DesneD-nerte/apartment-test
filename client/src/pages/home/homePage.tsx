@@ -1,12 +1,13 @@
 import React from "react";
-import ApartmentList from "../components/apartment/apartment-list/ApartmentList";
-import Header from "../components/header/Header";
+import ApartmentList from "../../components/apartment/apartment-list/ApartmentList";
+import Header from "../../components/header/Header";
+import "./homePage.style.scss";
 
 const HomePage = () => {
     return (
         <>
             <Header />
-            <main className="container">
+            <main>
                 <ApartmentList></ApartmentList>
             </main>
         </>

@@ -1,5 +1,13 @@
 @import "bootstrap";
-
 /* #app > div {
     margin: 0rem 5rem 0rem 5rem;
 } */
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+a:hover {
+    color: unset;
+}

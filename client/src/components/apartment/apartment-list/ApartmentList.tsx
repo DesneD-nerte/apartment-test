@@ -1,32 +1,28 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import ApartmentItem from "../apartment-item/ApartmentItem";
-
-const fetchApartments = async () => {
-    const res = await fetch("https://jsonplaceholder.typicode.com/users");
-    return res.json();
-};
-
-const backendApi = process.env.BACKEND_API_URL;
+import { fetchApartments } from "../Apartment.entity";
 
 const ApartmentList = () => {
-    // const [apartmentData, setApartmentData] = useState();
     const { isLoading, error, data } = useQuery({
         queryKey: ["apartmentData"],
-        queryFn: () => {
-            fetch(`${backendApi}/apartments`).then((res) => res.json());
-        },
+        queryFn: fetchApartments,
     });
 
-    if (isLoading) return "Loading...";
+    // if (isLoading) return "Loading...";
 
-    if (error) return "An error has occurred: " + error;
+    // if (error) return "An error has occurred: " + error;
+
+    console.log(data);
 
     return (
-        <div>
-            <ApartmentItem></ApartmentItem>
-            <ApartmentItem></ApartmentItem>
-            <ApartmentItem></ApartmentItem>
+        <div className="container ">
+            <div className="row g-3">
+                {data &&
+                    data.map((oneApartment) => {
+                        return <ApartmentItem key={oneApartment.id} {...oneApartment} />;
+                    })}
+            </div>
         </div>
     );
 };
