@@ -2,13 +2,13 @@ import React, { Dispatch, SetStateAction } from "react";
 import "./Pagination.style.scss";
 
 interface PaginationProps {
-    pageLength: number;
+    paginationLength: number;
     page: number;
     setPage: Dispatch<SetStateAction<number>>;
 }
 
 const Pagination = (props: PaginationProps) => {
-    const { pageLength, page, setPage } = props;
+    const { paginationLength, page, setPage } = props;
 
     const handleBack = () => {
         setPage((prevPage) => prevPage - 1);
@@ -28,7 +28,7 @@ const Pagination = (props: PaginationProps) => {
                         </button>
                     </li>
                 )}
-                {Array.from(Array(pageLength).keys()).map((pageIndex) => {
+                {Array.from(Array(paginationLength).keys()).map((pageIndex) => {
                     return (
                         <li className="page-item" key={pageIndex}>
                             <button
@@ -41,7 +41,7 @@ const Pagination = (props: PaginationProps) => {
                         </li>
                     );
                 })}
-                {page <= pageLength - 1 && (
+                {page <= paginationLength - 1 && (
                     <li className="page-item">
                         <button onClick={handleForward} className="page-link" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>

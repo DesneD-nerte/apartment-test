@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 import MySelect, { MySelectOptions } from "../../UI/MySelect/MySelect";
 import { Apartment } from "../apartment/Apartment.entity";
+import { changeSort } from "./controlPanelSlice";
 
 type SelectSort =
     | undefined
@@ -23,11 +26,11 @@ const selectOptions: MySelectOptions<SelectSort>[] = [
     },
     {
         option: "AreaHighToLow",
-        name: "По площади, сначала дорогие",
+        name: "По площади, сначала большие",
     },
     {
         option: "AreaLowToHigh",
-        name: "По площади, сначала дешевые",
+        name: "По площади, сначала малые",
     },
 ];
 
@@ -36,10 +39,20 @@ interface ControlPanelProps {
 }
 
 const ControlPanel = ({ dataApartments }: ControlPanelProps) => {
+    const filter = useSelector((state: RootState) => state.filter.sort);
+    const dispatch = useDispatch();
+
+    const handleChangeSort = (selectedSort: SelectSort) => {
+        dispatch(changeSort(selectedSort));
+    };
+    // console.log(filter);
     return (
-        <div className="d-flex justify-content-between">
+        <div
+            className="d-flex justify-content-between align-items-center"
+            style={{ height: "100px", backgroundColor: "white" }}
+        >
             <div></div>
-            <MySelect optionsArray={selectOptions}></MySelect>
+            <MySelect handleChangeSort={handleChangeSort} optionsArray={selectOptions}></MySelect>
         </div>
     );
 };

@@ -8,10 +8,10 @@ export interface MySelectOptions<T> {
 
 interface MySelectProps<T> {
     optionsArray: MySelectOptions<T>[];
+    handleChangeSort: (selectedSort: T) => void;
 }
 
-const MySelect = <T extends unknown>({ optionsArray }: MySelectProps<T>) => {
-    const [pickedSort, setPickedSort] = useState<T>();
+const MySelect = <T extends unknown>({ optionsArray, handleChangeSort }: MySelectProps<T>) => {
     const [openedList, setOpenedList] = useState(false);
 
     const refDiv = useRef<HTMLDivElement>(null);
@@ -35,13 +35,16 @@ const MySelect = <T extends unknown>({ optionsArray }: MySelectProps<T>) => {
     }, [openedList]);
 
     const handleItem = (value?: T) => {
-        setPickedSort(value);
+        handleChangeSort(value);
         setOpenedList(false);
     };
 
     return (
         <div ref={refDiv} className="my-select">
-            <button onClick={handleClick} className="my-select__button">
+            <button
+                onClick={handleClick}
+                className={`my-select__button ${openedList ? "active" : ""}`}
+            >
                 <div className="d-flex flex-row">
                     <div>
                         <svg

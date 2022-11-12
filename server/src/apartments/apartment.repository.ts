@@ -21,7 +21,6 @@ export class ApartmentRepository {
       });
     } else {
       apartmentList = await apartmentRepository.find();
-      console.log(123);
     }
     return apartmentList;
   }
