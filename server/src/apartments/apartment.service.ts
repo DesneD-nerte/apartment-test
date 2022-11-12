@@ -9,7 +9,7 @@ export class ApartmentService {
     this.apartmentRepository = apartmentRepository;
   }
 
-  async getAll() {
-    return await this.apartmentRepository.getAll();
+  async getAll(page?: number) {
+    return await this.apartmentRepository.getAll(page);
   }
 }

@@ -6,10 +6,23 @@ import { Apartment } from './apartment.entity';
 export class ApartmentRepository {
   constructor(private dataSource: DataSource) {}
 
-  async getAll() {
+  async getAll(page?: number) {
     const apartmentRepository = this.dataSource.getRepository(Apartment);
-    const apartmentList = await apartmentRepository.find();
+    let apartmentList;
 
+    let skipLength = 0;
+    if (page) {
+      if (page >= 2) {
+        skipLength = (page - 1) * 8;
+      }
+      apartmentList = await apartmentRepository.find({
+        skip: skipLength,
+        take: 8,
+      });
+    } else {
+      apartmentList = await apartmentRepository.find();
+      console.log(123);
+    }
     return apartmentList;
   }
 }

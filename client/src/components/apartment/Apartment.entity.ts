@@ -26,8 +26,12 @@ export interface ApartmentDTO {
 
 export type ApartmentItemCard = Omit<Apartment, "posOnFloor">;
 
-export const fetchApartments = async (): Promise<Apartment[]> => {
-    const res = await fetch(`${backendApi}/apartments`);
+export const fetchApartments = async (page?: number): Promise<Apartment[]> => {
+    let queryString = "";
+    if (page) {
+        queryString = new URLSearchParams({ page: page.toString() }).toString();
+    }
+    const res = await fetch(`${backendApi}/apartments?` + queryString);
     const result: ApartmentDTO[] = await res.json();
 
     return result.map((oneApartment) => {
