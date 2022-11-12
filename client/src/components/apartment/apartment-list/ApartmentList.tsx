@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import ApartmentItem from "../apartment-item/ApartmentItem";
 import { fetchApartments } from "../Apartment.entity";
 import Pagination from "../../pagination/Pagination";
+import ControlPanel from "../../controlPanel/ControlPanel";
 
 const ApartmentList = () => {
     const [page, setPage] = useState(1);
@@ -24,15 +25,18 @@ const ApartmentList = () => {
     }, []);
 
     return (
-        <div className="container">
-            <div className="row g-3">
-                {data &&
-                    data.map((oneApartment) => {
-                        return <ApartmentItem key={oneApartment.id} {...oneApartment} />;
-                    })}
-            </div>
-            <div className="mt-3">
-                <Pagination pageLength={pageLength} page={page} setPage={setPage} />
+        <div>
+            <ControlPanel dataApartments={data}></ControlPanel>
+            <div className="container">
+                <div className="row g-3">
+                    {data &&
+                        data.map((oneApartment) => {
+                            return <ApartmentItem key={oneApartment.id} {...oneApartment} />;
+                        })}
+                </div>
+                <div className="mt-3">
+                    <Pagination pageLength={pageLength} page={page} setPage={setPage} />
+                </div>
             </div>
         </div>
     );

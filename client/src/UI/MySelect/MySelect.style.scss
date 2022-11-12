@@ -1,0 +1,57 @@
+.my-select {
+    position: relative;
+    &__button {
+        height: 40px;
+        background-color: transparent;
+        border: 0;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: #edf1fc;
+        }
+    }
+}
+
+.select-container {
+    position: absolute;
+    padding: 0px;
+    right: 0px;
+    min-width: 250px;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    border-radius: 10px;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+        height: 40px;
+
+        &:first-of-type {
+            background-color: rgb(224, 224, 224);
+        }
+
+        // &:not(:last-of-type) {
+        // border-bottom: 1px solid lightgray;
+        // }
+
+        // &:hover {
+        //     background-color: rgb(216, 216, 216);
+        // }
+    }
+
+    &__button {
+        height: 100%;
+        width: 100%;
+        font-size: smaller;
+        text-align: start;
+        border: 0px;
+        background-color: white;
+
+        &:hover {
+            background-color: rgb(231, 231, 231);
+        }
+    }
+}

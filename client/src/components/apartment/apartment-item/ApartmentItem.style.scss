@@ -8,10 +8,10 @@ img {
     max-height: 350px;
 }
 
-a:hover {
-    box-shadow: 0px 0px 50px 5px #b7b7b7;
-}
+a {
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
 
-.fw-500 {
-    font-weight: 500;
+    &:hover {
+        box-shadow: 0px 0px 30px 5px #b7b7b7;
+    }
 }

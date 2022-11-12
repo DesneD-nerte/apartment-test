@@ -14,7 +14,9 @@ const ApartmentItem = React.memo(function ApartmentItem(apartmentItemCard: Apart
                 </div>
                 <div className="d-flex flex-column justify-content-center p-3 fluid bg-white border-top">
                     <div className="fs-5">
-                        <strong>{apartmentItemCard.price} &#8381;</strong>
+                        <strong>
+                            {new Intl.NumberFormat("ru-RU").format(apartmentItemCard.price)} &#8381;
+                        </strong>
                     </div>
                     <div className="text-primary fw-500">
                         {apartmentItemCard.rooms}-комн. квартира
