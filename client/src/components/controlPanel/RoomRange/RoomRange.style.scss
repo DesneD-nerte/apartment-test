@@ -1,0 +1,24 @@
+div .room-button {
+    background-color: white;
+    border: 0px;
+    width: 100%;
+    border: 1px solid lightgray;
+
+    &:hover,
+    &:active {
+        color: rgb(13, 110, 253);
+    }
+
+    &.is-active {
+        background-color: #edf1fc;
+        color: rgb(13, 110, 253);
+    }
+
+    &:not(:last-child) {
+        border-right: 0px;
+    }
+
+    &:focus-visible {
+        border: 1px solid;
+    }
+}

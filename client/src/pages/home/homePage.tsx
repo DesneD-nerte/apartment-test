@@ -1,5 +1,6 @@
 import React from "react";
 import ApartmentList from "../../components/apartment/apartment-list/ApartmentList";
+import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import "./homePage.style.scss";
 
@@ -10,6 +11,7 @@ const HomePage = () => {
             <main>
                 <ApartmentList></ApartmentList>
             </main>
+            <Footer />
         </>
     );
 };

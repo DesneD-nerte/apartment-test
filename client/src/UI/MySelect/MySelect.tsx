@@ -45,7 +45,7 @@ const MySelect = <T extends unknown>({ optionsArray, handleChangeSort }: MySelec
                 onClick={handleClick}
                 className={`my-select__button ${openedList ? "active" : ""}`}
             >
-                <div className="d-flex flex-row">
+                <div className="d-flex flex-row align-items-center">
                     <div>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@ const MySelect = <T extends unknown>({ optionsArray, handleChangeSort }: MySelec
                             <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
                         </svg>
                     </div>
-                    <div className="ms-2 me-2">По умолчанию</div>
+                    <div className="d-none d-sm-block ms-2 me-2">По умолчанию</div>
                     <div>
                         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                             <path d="M6.882 9.471a.748.748 0 0 1 1.057 0l3.884 3.876a.25.25 0 0 0 .354 0l3.884-3.876a.748.748 0 0 1 1.057 1.058l-4.411 4.41a1 1 0 0 1-1.414 0l-4.411-4.41a.748.748 0 0 1 0-1.058z"></path>

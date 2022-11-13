@@ -1,7 +1,8 @@
 .my-select {
     position: relative;
     &__button {
-        height: 40px;
+        height: 100%;
+        min-height: 40px;
         background-color: transparent;
         border: 0;
         border-radius: 5px;

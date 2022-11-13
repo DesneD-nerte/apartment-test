@@ -1,0 +1,22 @@
+.control-button {
+    background-color: transparent;
+    border: 0px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 5px 20px 5px 20px;
+
+    &:focus-visible,
+    &:hover {
+        background-color: #edf1fc;
+    }
+
+    &__main {
+        background-color: rgba(13, 109, 253, 0.75);
+        color: white;
+
+        &:focus-visible,
+        &:hover {
+            background-color: rgb(13, 109, 253, 1);
+        }
+    }
+}

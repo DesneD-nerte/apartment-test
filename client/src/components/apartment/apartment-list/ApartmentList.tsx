@@ -9,7 +9,7 @@ import { usePage } from "../../../hooks/usePage";
 
 const ApartmentList = () => {
     const [page, setPage] = useState(1);
-    const { isLoading, error, data } = useQuery({
+    const { isLoading, error, data, refetch } = useQuery({
         queryKey: ["apartmentData"],
         queryFn: () => fetchApartments(),
     });
@@ -18,7 +18,7 @@ const ApartmentList = () => {
 
     return (
         <div>
-            <ControlPanel></ControlPanel>
+            <ControlPanel setPage={setPage}></ControlPanel>
             <div className="container mt-3">
                 <div className="row g-3">
                     {pageApartments?.length ? (

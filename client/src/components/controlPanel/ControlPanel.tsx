@@ -1,10 +1,11 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDebounce } from "../../hooks/useDebounce";
-import { RootState } from "../../store/store";
 import MySelect, { MySelectOptions } from "../../UI/MySelect/MySelect";
-import { Apartment } from "../apartment/Apartment.entity";
 import { changePrice, changeRooms, changeSort } from "./controlPanelSlice";
+import PriceRange from "./PriceRange/PriceRange";
+import RoomRange from "./RoomRange/RoomRange";
+import "./ControlPanel.style.scss";
 
 type SelectSort =
     | undefined
@@ -36,32 +37,19 @@ const selectOptions: MySelectOptions<SelectSort>[] = [
 ];
 
 interface ControlPanelProps {
-    dataApartments?: Apartment[];
+    setPage: Dispatch<SetStateAction<number>>;
 }
 
-const ControlPanel = () => {
+const ControlPanel = ({ setPage }: ControlPanelProps) => {
     const [priceStart, setPriceStart] = useState("");
     const [priceEnd, setPriceEnd] = useState("");
-
     const debouncedPriceStart = useDebounce(priceStart);
     const debouncedPriceEnd = useDebounce(priceEnd);
-
-    const [pickedRooms, setPickedRooms] = useState<number[]>([]);
 
     const dispatch = useDispatch();
 
     const handleChangeSort = (selectedSort: SelectSort) => {
         dispatch(changeSort(selectedSort));
-    };
-
-    const handleChangePrice = (value: string, setPriceState: Dispatch<SetStateAction<string>>) => {
-        const valueNumberFormat = value.replace(/\s/gi, "");
-        if (value == "" || Number(valueNumberFormat) > 0) {
-            setPriceState(Intl.NumberFormat("ru-RU").format(Number(valueNumberFormat)));
-        }
-        if (Number(valueNumberFormat) == 0) {
-            setPriceState("");
-        }
     };
 
     const handleChangeRooms = (numberRooms: number) => {
@@ -79,46 +67,52 @@ const ControlPanel = () => {
 
     return (
         <div className="bg-white">
-            <div className="container" style={{ height: "100px" }}>
-                <div className="row align-items-center h-100">
+            <div className="container pt-3 pb-3">
+                <div className="row align-items-center">
                     <div className="col-4 d-flex flex-column">
                         Стоимость
-                        <div className="d-flex flex-row">
-                            <input
-                                type="text"
-                                value={priceStart}
-                                onChange={(e) =>
-                                    handleChangePrice(e.currentTarget.value, setPriceStart)
-                                }
-                                min="0"
-                                placeholder="От"
-                                className="w-100"
-                            ></input>
-                            <input
-                                type="text"
-                                value={priceEnd}
-                                onChange={(e) =>
-                                    handleChangePrice(e.currentTarget.value, setPriceEnd)
-                                }
-                                placeholder="До"
-                                className="w-100"
-                            ></input>
-                        </div>
+                        <PriceRange
+                            priceStart={priceStart}
+                            priceEnd={priceEnd}
+                            setPriceStart={setPriceStart}
+                            setPriceEnd={setPriceEnd}
+                        />
                     </div>
                     <div className="col-4 d-flex flex-column">
                         Комнатность
-                        <div>
-                            <button onClick={(e) => handleChangeRooms(1)}>1</button>
-                            <button onClick={(e) => handleChangeRooms(2)}>2</button>
-                            <button onClick={(e) => handleChangeRooms(3)}>3</button>
-                            <button onClick={(e) => handleChangeRooms(4)}>4+</button>
-                        </div>
+                        <RoomRange handleChangeRooms={handleChangeRooms} />
                     </div>
                     <div className="col-4 d-flex justify-content-end">
                         <MySelect
                             handleChangeSort={handleChangeSort}
                             optionsArray={selectOptions}
                         ></MySelect>
+                    </div>
+                </div>
+
+                <div className="row align-items-center justify-content-center mt-3">
+                    <div className="col-6 d-flex justify-content-center">
+                        <button className="control-button">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                viewBox="0 0 16 16"
+                            >
+                                <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+                            </svg>
+                            <span className="ms-2">Расширенный поиск</span>
+                        </button>
+                    </div>
+                    <div className="col-6 d-flex justify-content-center">
+                        {/* TODO We don't need this button, cuz we have automatic filter logic, but for the UI we may leave it */}
+                        <button
+                            className="control-button control-button__main"
+                            onClick={() => setPage(1)}
+                        >
+                            Поиск предложений
+                        </button>
                     </div>
                 </div>
             </div>
