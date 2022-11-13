@@ -6,6 +6,7 @@ import { changePrice, changeRooms, changeSort } from "./controlPanelSlice";
 import PriceRange from "./PriceRange/PriceRange";
 import RoomRange from "./RoomRange/RoomRange";
 import "./ControlPanel.style.scss";
+import AdditionalModal from "./AdditionalModal/AdditionalModal";
 
 type SelectSort =
     | undefined
@@ -46,6 +47,8 @@ const ControlPanel = ({ setPage }: ControlPanelProps) => {
     const debouncedPriceStart = useDebounce(priceStart);
     const debouncedPriceEnd = useDebounce(priceEnd);
 
+    const [openModal, setOpenModal] = useState(false);
+
     const dispatch = useDispatch();
 
     const handleChangeSort = (selectedSort: SelectSort) => {
@@ -64,6 +67,21 @@ const ControlPanel = ({ setPage }: ControlPanelProps) => {
             })
         );
     }, [debouncedPriceStart, debouncedPriceEnd]);
+
+    //Disable scroll when modal is open
+    useEffect(() => {
+        if (openModal) {
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${window.scrollY}px`;
+            document.body.style.right = `-${window.scrollX}px`;
+            document.body.style.left = `-${window.scrollX}px`;
+        } else {
+            document.body.style.position = "unset";
+            document.body.style.top = "unset";
+            document.body.style.right = "unset";
+            document.body.style.left = "unset";
+        }
+    }, [openModal]);
 
     return (
         <div className="bg-white">
@@ -92,7 +110,7 @@ const ControlPanel = ({ setPage }: ControlPanelProps) => {
 
                 <div className="row align-items-center justify-content-center mt-3">
                     <div className="col-6 d-flex justify-content-center">
-                        <button className="control-button">
+                        <button className="control-button" onClick={() => setOpenModal(true)}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -116,6 +134,7 @@ const ControlPanel = ({ setPage }: ControlPanelProps) => {
                     </div>
                 </div>
             </div>
+            {openModal && <AdditionalModal setOpenModal={setOpenModal}></AdditionalModal>}
         </div>
     );
 };

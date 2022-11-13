@@ -8,7 +8,7 @@ interface useFilterProps {
 }
 
 export const useFilter = ({ apartments }: useFilterProps) => {
-    const { sort, price, rooms } = useSelector((state: RootState) => state.filter);
+    const { sort, price, rooms, area } = useSelector((state: RootState) => state.filter);
     const [newApartments, setNewApartments] = useState<Apartment[]>();
 
     useEffect(() => {
@@ -44,10 +44,32 @@ export const useFilter = ({ apartments }: useFilterProps) => {
         }
     }, [apartments, rooms]);
 
+    const areaFilter = useMemo(() => {
+        if (area.areaTotal || area.areaLive || area.areaKitchen) {
+            return apartments?.filter((oneApartment) => {
+                return (
+                    oneApartment.areaTotal >= area.areaTotal.totalStart &&
+                    oneApartment.areaTotal <= area.areaTotal.totalEnd &&
+                    oneApartment.areaLive >= area.areaLive.liveStart &&
+                    oneApartment.areaTotal <= area.areaLive.liveEnd &&
+                    oneApartment.areaKitchen >= area.areaKitchen.kitchenStart &&
+                    oneApartment.areaKitchen <= area.areaKitchen.kitchenEnd
+                );
+            });
+        } else {
+            return apartments;
+        }
+    }, [apartments, area]);
+
     const intersectedApartments = useMemo(() => {
-        const filteredArray = priceFilter?.filter((apartment) => roomsFilter?.includes(apartment));
-        return filteredArray;
-    }, [newApartments, sort, price, rooms]);
+        // const filteredArray = priceFilter?.filter((apartment) => roomsFilter?.includes(apartment));
+        const filteredArray = [priceFilter, roomsFilter, areaFilter];
+        console.log("123", filteredArray);
+
+        return filteredArray.reduce((a, b) => a?.filter((c) => b?.includes(c)));
+    }, [newApartments, sort, price, rooms, area]);
+
+    console.log(intersectedApartments);
 
     const filteredApartments = useMemo(() => {
         return intersectedApartments?.sort((oneApartment, secondApartment) => {

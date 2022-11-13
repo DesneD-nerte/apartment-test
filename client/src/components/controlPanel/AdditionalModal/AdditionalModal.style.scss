@@ -1,0 +1,25 @@
+.background-wrapper {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(240, 240, 240, 0.85);
+    backdrop-filter: opacity(0.7) blur(3px);
+}
+
+.content-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    top: 30%;
+    width: calc(100% - 50px);
+    margin: 0 auto;
+    max-width: 1196px;
+    background-color: white;
+    box-shadow: 0px 0px 5px rgb(155, 155, 155);
+    border-radius: 5px;
+    padding: 20px;
+    border-top: 1px solid lightgray;
+}

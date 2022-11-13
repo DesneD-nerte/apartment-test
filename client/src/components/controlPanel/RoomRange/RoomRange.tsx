@@ -9,7 +9,6 @@ interface RoomRangeProps {
 
 const RoomRange = ({ handleChangeRooms }: RoomRangeProps) => {
     const { rooms } = useSelector((state: RootState) => state.filter);
-    console.log(rooms);
 
     return (
         <div className="d-flex flex-row">
