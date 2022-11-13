@@ -14,13 +14,11 @@ const ApartmentList = () => {
         queryFn: () => fetchApartments(),
     });
 
-    const filteredApartments = useFilter({ apartments: data });
-
-    const { paginationLength, pageApartments } = usePage({ page, apartments: filteredApartments });
+    const { paginationLength, pageApartments } = usePage({ page, apartments: data });
 
     return (
         <div>
-            <ControlPanel dataApartments={data}></ControlPanel>
+            <ControlPanel></ControlPanel>
             <div className="container mt-3">
                 <div className="row g-3">
                     {pageApartments?.length ? (

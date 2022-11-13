@@ -16,6 +16,7 @@ interface PriceInput {
 interface ControlPanelState {
     sort: SelectSort;
     price: PriceInput;
+    rooms: number[];
 }
 
 const initialState: ControlPanelState = {
@@ -24,21 +25,29 @@ const initialState: ControlPanelState = {
         priceStart: 0,
         priceEnd: 0,
     },
+    rooms: [],
 };
 
 export const controlPanelSlice = createSlice({
     name: "controlPanel",
     initialState,
     reducers: {
-        changeSort: (state, action) => {
+        changeSort: (state, action: { payload: SelectSort }) => {
             state.sort = action.payload;
         },
         changePrice: (state, action: { payload: PriceInput }) => {
             state.price = action.payload;
         },
+        changeRooms: (state, action: { payload: number }) => {
+            if (!state.rooms.find((oneRoom) => oneRoom == action.payload)) {
+                state.rooms.push(action.payload);
+            } else {
+                state.rooms = state.rooms.filter((oneRoom) => oneRoom != action.payload);
+            }
+        },
     },
 });
 
-export const { changeSort, changePrice } = controlPanelSlice.actions;
+export const { changeSort, changePrice, changeRooms } = controlPanelSlice.actions;
 
 export default controlPanelSlice.reducer;

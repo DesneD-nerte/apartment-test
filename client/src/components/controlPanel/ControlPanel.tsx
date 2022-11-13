@@ -4,7 +4,7 @@ import { useDebounce } from "../../hooks/useDebounce";
 import { RootState } from "../../store/store";
 import MySelect, { MySelectOptions } from "../../UI/MySelect/MySelect";
 import { Apartment } from "../apartment/Apartment.entity";
-import { changePrice, changeSort } from "./controlPanelSlice";
+import { changePrice, changeRooms, changeSort } from "./controlPanelSlice";
 
 type SelectSort =
     | undefined
@@ -39,12 +39,14 @@ interface ControlPanelProps {
     dataApartments?: Apartment[];
 }
 
-const ControlPanel = ({ dataApartments }: ControlPanelProps) => {
+const ControlPanel = () => {
     const [priceStart, setPriceStart] = useState("");
     const [priceEnd, setPriceEnd] = useState("");
 
     const debouncedPriceStart = useDebounce(priceStart);
     const debouncedPriceEnd = useDebounce(priceEnd);
+
+    const [pickedRooms, setPickedRooms] = useState<number[]>([]);
 
     const dispatch = useDispatch();
 
@@ -60,6 +62,10 @@ const ControlPanel = ({ dataApartments }: ControlPanelProps) => {
         if (Number(valueNumberFormat) == 0) {
             setPriceState("");
         }
+    };
+
+    const handleChangeRooms = (numberRooms: number) => {
+        dispatch(changeRooms(numberRooms));
     };
 
     useEffect(() => {
@@ -102,10 +108,10 @@ const ControlPanel = ({ dataApartments }: ControlPanelProps) => {
                     <div className="col-4 d-flex flex-column">
                         Комнатность
                         <div>
-                            <button>1</button>
-                            <button>2</button>
-                            <button>3</button>
-                            <button>4+</button>
+                            <button onClick={(e) => handleChangeRooms(1)}>1</button>
+                            <button onClick={(e) => handleChangeRooms(2)}>2</button>
+                            <button onClick={(e) => handleChangeRooms(3)}>3</button>
+                            <button onClick={(e) => handleChangeRooms(4)}>4+</button>
                         </div>
                     </div>
                     <div className="col-4 d-flex justify-content-end">

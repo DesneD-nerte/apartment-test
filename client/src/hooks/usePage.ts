@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { Apartment } from "../components/apartment/Apartment.entity";
+import { useFilter } from "./useFilter";
 
 interface usePageProps {
     page: number;
@@ -7,20 +8,22 @@ interface usePageProps {
 }
 
 export const usePage = ({ page, apartments }: usePageProps) => {
+    const filteredApartments = useFilter({ apartments: apartments });
+
     const paginationLength = useMemo(() => {
-        if (apartments) {
-            return Math.ceil(apartments.length / 8);
+        if (filteredApartments) {
+            return Math.ceil(filteredApartments.length / 8);
         }
 
         return 0;
-    }, [apartments]);
+    }, [filteredApartments]);
 
     const pageApartments = useMemo(() => {
         const fromPosition = (page - 1) * 8;
         const toPosition = (page - 1) * 8 + 8;
 
-        return apartments?.slice(fromPosition, toPosition);
-    }, [page, apartments]);
+        return filteredApartments?.slice(fromPosition, toPosition);
+    }, [page, filteredApartments]);
 
     return { paginationLength, pageApartments };
 };
