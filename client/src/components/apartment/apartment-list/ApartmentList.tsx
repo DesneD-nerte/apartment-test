@@ -5,6 +5,7 @@ import { fetchApartments } from "../Apartment.entity";
 import Pagination from "../../pagination/Pagination";
 import ControlPanel from "../../controlPanel/ControlPanel";
 import { useFilter } from "../../../hooks/useFilter";
+import { usePage } from "../../../hooks/usePage";
 
 const ApartmentList = () => {
     const [page, setPage] = useState(1);
@@ -13,24 +14,22 @@ const ApartmentList = () => {
         queryFn: () => fetchApartments(),
     });
 
-    const paginationLength = useMemo(() => {
-        if (data) {
-            return data?.length / 8;
-        }
-        return 0;
-    }, [data]);
+    const filteredApartments = useFilter({ apartments: data });
 
-    const filteredApartments = useFilter({ page: page, apartments: data });
+    const { paginationLength, pageApartments } = usePage({ page, apartments: filteredApartments });
 
     return (
         <div>
             <ControlPanel dataApartments={data}></ControlPanel>
-            <div className="container">
+            <div className="container mt-3">
                 <div className="row g-3">
-                    {filteredApartments &&
-                        filteredApartments.map((oneApartment) => {
+                    {pageApartments?.length ? (
+                        pageApartments.map((oneApartment) => {
                             return <ApartmentItem key={oneApartment.id} {...oneApartment} />;
-                        })}
+                        })
+                    ) : (
+                        <div>Квартир не найдено</div>
+                    )}
                 </div>
                 <div className="mt-3">
                     <Pagination paginationLength={paginationLength} page={page} setPage={setPage} />

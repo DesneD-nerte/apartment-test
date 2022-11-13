@@ -11,6 +11,7 @@ import {
 import "./styles/styles.css";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => {
         <Provider store={store}>
             <QueryClientProvider client={queryClient}>
                 <RouterProvider router={AppRouter} />;
+                <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
         </Provider>
     );
