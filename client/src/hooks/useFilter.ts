@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { Apartment } from "../components/apartment/Apartment.entity";
 import { RootState } from "../store/store";
@@ -62,14 +62,10 @@ export const useFilter = ({ apartments }: useFilterProps) => {
     }, [apartments, area]);
 
     const intersectedApartments = useMemo(() => {
-        // const filteredArray = priceFilter?.filter((apartment) => roomsFilter?.includes(apartment));
         const filteredArray = [priceFilter, roomsFilter, areaFilter];
-        console.log("123", filteredArray);
 
         return filteredArray.reduce((a, b) => a?.filter((c) => b?.includes(c)));
     }, [newApartments, sort, price, rooms, area]);
-
-    console.log(intersectedApartments);
 
     const filteredApartments = useMemo(() => {
         return intersectedApartments?.sort((oneApartment, secondApartment) => {

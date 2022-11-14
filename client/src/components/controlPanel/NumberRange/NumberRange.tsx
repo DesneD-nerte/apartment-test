@@ -7,7 +7,7 @@ interface PriceRangeProps {
     setPriceEnd: Dispatch<SetStateAction<string>>;
 }
 
-const PriceRange = (props: PriceRangeProps) => {
+const NumberRange = (props: PriceRangeProps) => {
     const { priceStart, priceEnd, setPriceStart, setPriceEnd } = props;
 
     const handleChangePrice = (value: string, setPriceState: Dispatch<SetStateAction<string>>) => {
@@ -41,4 +41,4 @@ const PriceRange = (props: PriceRangeProps) => {
     );
 };
 
-export default PriceRange;
+export default NumberRange;

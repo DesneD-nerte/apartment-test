@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ApartmentItem from "../apartment-item/ApartmentItem";
 import { fetchApartments } from "../Apartment.entity";
 import Pagination from "../../pagination/Pagination";
 import ControlPanel from "../../controlPanel/ControlPanel";
-import { useFilter } from "../../../hooks/useFilter";
 import { usePage } from "../../../hooks/usePage";
 
 const ApartmentList = () => {
@@ -15,6 +14,10 @@ const ApartmentList = () => {
     });
 
     const { paginationLength, pageApartments } = usePage({ page, apartments: data });
+
+    useEffect(() => {
+        setPage(1);
+    }, [paginationLength]);
 
     return (
         <div>

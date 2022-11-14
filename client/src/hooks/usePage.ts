@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { Dispatch, SetStateAction, useMemo } from "react";
 import { Apartment } from "../components/apartment/Apartment.entity";
 import { useFilter } from "./useFilter";
 

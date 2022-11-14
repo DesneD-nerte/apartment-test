@@ -2,7 +2,7 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../pages/home/homePage";
 import ErrorPage from "../pages/error/errorPage";
-import ApartmentDetail from "../components/apartment/apartment-detail/ApartmentDetail";
+import ApartmentPage from "../pages/home/apartmentId/apartmentPage";
 
 export const AppRouter = createBrowserRouter([
     {
@@ -12,6 +12,7 @@ export const AppRouter = createBrowserRouter([
     },
     {
         path: "/:apartmentId",
-        element: <ApartmentDetail />,
+        element: <ApartmentPage />,
+        errorElement: <ErrorPage />,
     },
 ]);

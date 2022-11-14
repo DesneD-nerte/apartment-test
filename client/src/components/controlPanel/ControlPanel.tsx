@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useDebounce } from "../../hooks/useDebounce";
 import MySelect, { MySelectOptions } from "../../UI/MySelect/MySelect";
 import { changePrice, changeRooms, changeSort } from "./controlPanelSlice";
-import PriceRange from "./PriceRange/PriceRange";
+import NumberRange from "./NumberRange/NumberRange";
 import RoomRange from "./RoomRange/RoomRange";
 import "./ControlPanel.style.scss";
 import AdditionalModal from "./AdditionalModal/AdditionalModal";
@@ -86,21 +86,21 @@ const ControlPanel = ({ setPage }: ControlPanelProps) => {
     return (
         <div className="bg-white">
             <div className="container pt-3 pb-3">
-                <div className="row align-items-center">
-                    <div className="col-4 d-flex flex-column">
+                <div className="row align-items-center" style={{ height: "55px" }}>
+                    <div className="col-4 d-flex flex-column h-100">
                         Стоимость
-                        <PriceRange
+                        <NumberRange
                             priceStart={priceStart}
                             priceEnd={priceEnd}
                             setPriceStart={setPriceStart}
                             setPriceEnd={setPriceEnd}
                         />
                     </div>
-                    <div className="col-4 d-flex flex-column">
+                    <div className="col-4 d-flex flex-column h-100">
                         Комнатность
                         <RoomRange handleChangeRooms={handleChangeRooms} />
                     </div>
-                    <div className="col-4 d-flex justify-content-end">
+                    <div className="col-4 d-flex justify-content-end h-100">
                         <MySelect
                             handleChangeSort={handleChangeSort}
                             optionsArray={selectOptions}
@@ -111,16 +111,18 @@ const ControlPanel = ({ setPage }: ControlPanelProps) => {
                 <div className="row align-items-center justify-content-center mt-3">
                     <div className="col-6 d-flex justify-content-center">
                         <button className="control-button" onClick={() => setOpenModal(true)}>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                fill="currentColor"
-                                viewBox="0 0 16 16"
-                            >
-                                <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
-                            </svg>
-                            <span className="ms-2">Расширенный поиск</span>
+                            <div className="d-flex align-items-center">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+                                </svg>
+                                <span className="ms-2">Расширенный поиск</span>
+                            </div>
                         </button>
                     </div>
                     <div className="col-6 d-flex justify-content-center">

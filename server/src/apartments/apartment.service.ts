@@ -12,4 +12,8 @@ export class ApartmentService {
   async getAll(page?: number) {
     return await this.apartmentRepository.getAll(page);
   }
+
+  async getOne(apartmentId: number) {
+    return await this.apartmentRepository.getOne(apartmentId);
+  }
 }

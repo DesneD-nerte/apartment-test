@@ -4,7 +4,7 @@ import useAreaRange from "../../../hooks/useAreaRange";
 import { useDebounce } from "../../../hooks/useDebounce";
 import { RootState } from "../../../store/store";
 import { changeArea } from "../controlPanelSlice";
-import PriceRange from "../PriceRange/PriceRange";
+import NumberRange from "../NumberRange/NumberRange";
 import "./AdditionalModal.style.scss";
 
 interface AdditionalModalProps {
@@ -58,39 +58,56 @@ const AdditionalModal = ({ setOpenModal }: AdditionalModalProps) => {
     ]);
 
     return (
-        <div className="background-wrapper">
+        <div
+            className="background-wrapper"
+            onClick={(e) => {
+                setOpenModal(false);
+            }}
+        >
             <div className="content-container">
-                <div className="">
-                    <PriceRange
-                        priceStart={areaTotalStart}
-                        priceEnd={areaTotalEnd}
-                        setPriceStart={setAreaTotalStart}
-                        setPriceEnd={setAreaTotalEnd}
-                    />
-                    <PriceRange
-                        priceStart={areaLiveStart}
-                        priceEnd={areaLiveEnd}
-                        setPriceStart={setAreaLiveStart}
-                        setPriceEnd={setAreaLiveEnd}
-                    />
-                    <PriceRange
-                        priceStart={areaKitchenStart}
-                        priceEnd={areaKitchenEnd}
-                        setPriceStart={setAreaKitchenStart}
-                        setPriceEnd={setAreaKitchenEnd}
-                    />
-                </div>
+                <div onClick={(e) => e.stopPropagation()} className="p-4">
+                    <div>
+                        <div>
+                            Общая площадь м<sup>2</sup>
+                            <NumberRange
+                                priceStart={areaTotalStart}
+                                priceEnd={areaTotalEnd}
+                                setPriceStart={setAreaTotalStart}
+                                setPriceEnd={setAreaTotalEnd}
+                            />
+                        </div>
+                        <div className="mt-3">
+                            Жилая площадь м<sup>2</sup>
+                            <NumberRange
+                                priceStart={areaLiveStart}
+                                priceEnd={areaLiveEnd}
+                                setPriceStart={setAreaLiveStart}
+                                setPriceEnd={setAreaLiveEnd}
+                            />
+                        </div>
 
-                <div className="d-flex flex-row justify-content-end buttonsContainer">
-                    <button className="me-3 control-button" onClick={() => setOpenModal(false)}>
-                        Отмена
-                    </button>
-                    <button
-                        className="control-button control-button__main"
-                        onClick={() => setOpenModal(false)}
-                    >
-                        Показать предложения
-                    </button>
+                        <div className="mt-3">
+                            Площадь кухни м<sup>2</sup>
+                            <NumberRange
+                                priceStart={areaKitchenStart}
+                                priceEnd={areaKitchenEnd}
+                                setPriceStart={setAreaKitchenStart}
+                                setPriceEnd={setAreaKitchenEnd}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="d-flex flex-sm-row flex-column-reverse justify-content-end buttonsContainer mt-3">
+                        <button className="control-button" onClick={() => setOpenModal(false)}>
+                            Отмена
+                        </button>
+                        <button
+                            className="control-button control-button__main"
+                            onClick={() => setOpenModal(false)}
+                        >
+                            Показать предложения
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

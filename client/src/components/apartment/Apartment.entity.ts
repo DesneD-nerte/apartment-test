@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const backendApi = process.env.BACKEND_API_URL;
 
 export interface Apartment {
@@ -27,16 +29,19 @@ export interface ApartmentDTO {
 export type ApartmentItemCard = Omit<Apartment, "posOnFloor">;
 
 export const fetchApartments = async (page?: number): Promise<Apartment[]> => {
-    let queryString = "";
-    if (page) {
-        queryString = new URLSearchParams({ page: page.toString() }).toString();
-    }
-    const res = await fetch(`${backendApi}/apartments?` + queryString);
-    const result: ApartmentDTO[] = await res.json();
+    const res = await axios.get(`${backendApi}/apartments`, { params: { page: page } });
+    const result: ApartmentDTO[] = res.data;
 
     return result.map((oneApartment) => {
         return transformDTO(oneApartment);
     });
+};
+
+export const fetchOneApartment = async (apartmentId: string): Promise<Apartment> => {
+    const res = await axios.get(`${backendApi}/apartments/${apartmentId}`);
+    const result: ApartmentDTO = res.data;
+
+    return transformDTO(result);
 };
 
 const transformDTO = (apartment: ApartmentDTO): Apartment => {

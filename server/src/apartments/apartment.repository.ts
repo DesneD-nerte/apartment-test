@@ -24,4 +24,10 @@ export class ApartmentRepository {
     }
     return apartmentList;
   }
+
+  async getOne(apartmentId: number) {
+    const apartmentRepository = this.dataSource.getRepository(Apartment);
+
+    return apartmentRepository.findOneBy({ id: apartmentId });
+  }
 }
