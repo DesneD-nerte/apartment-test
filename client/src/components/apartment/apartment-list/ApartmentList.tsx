@@ -22,7 +22,7 @@ const ApartmentList = () => {
     return (
         <div>
             <ControlPanel setPage={setPage}></ControlPanel>
-            <div className="container mt-3">
+            <div className="container mt-3 mb-3">
                 <div className="row g-3">
                     {pageApartments?.length ? (
                         pageApartments.map((oneApartment) => {
