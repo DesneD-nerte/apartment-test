@@ -19,5 +19,5 @@ $ cd server => npm run start:dev
 -   Axios ([Site](https://axios-http.com/) | [License](https://github.com/axios/axios/blob/v1.x/LICENSE))
 -   React Query ([Site](https://tanstack.com/query/v4) | [License](https://github.com/TanStack/query/blob/main/LICENSE))
 -   React Router ([Site](https://reactrouter.com/en/main) | [License](https://github.com/remix-run/react-router/blob/main/LICENSE.md))
--   Babel ([Site](https://babeljs.io/) | [License](https://github.com/babel/babel/blob/main/LICENSE)
+-   Babel ([Site](https://babeljs.io/) | [License](https://github.com/babel/babel/blob/main/LICENSE))
 -   Webpack ([Site](https://webpack.js.org/) | [License](https://github.com/webpack/webpack/blob/main/LICENSE))
