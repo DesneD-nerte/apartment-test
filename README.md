@@ -13,11 +13,11 @@ $ cd server => npm run start:dev
 
 ## Frameworks and libraries
 
--   Redux-tookit ([Site](https://redux-toolkit.js.org/) | [License](/reduxjs/redux-toolkit/blob/master/LICENSE))
--   Nest ([Site](https://nestjs.com/) | [License](/nestjs/nest/blob/master/LICENSE))
--   Bootstrap ([Site](https://getbootstrap.com/) | [License](/twbs/bootstrap/blob/main/LICENSE))
--   Axios ([Site](https://axios-http.com/) | [License](/axios/axios/blob/v1.x/LICENSE))
--   React Query ([Site](https://tanstack.com/query/v4) | [License](/query/blob/main/LICENSE)
--   React Router ([Site](https://reactrouter.com/en/main) | [License](/remix-run/react-router))
--   Babel ([Site](https://babeljs.io/) | [License](/babel/babel/blob/main/LICENSE)
--   Webpack ([Site](https://webpack.js.org/) | [License](/webpack/webpack/blob/main/LICENSE))
+-   Redux-tookit ([Site](https://redux-toolkit.js.org/) | [License](https://github.com/reduxjs/redux-toolkit/blob/master/LICENSE))
+-   Nest ([Site](https://nestjs.com/) | [License](https://github.com/nestjs/nest/blob/master/LICENSE))
+-   Bootstrap ([Site](https://getbootstrap.com/) | [License](https://github.com/twbs/bootstrap/blob/main/LICENSE))
+-   Axios ([Site](https://axios-http.com/) | [License](https://github.com/axios/axios/blob/v1.x/LICENSE))
+-   React Query ([Site](https://tanstack.com/query/v4) | [License](https://github.com/query/blob/main/LICENSE)
+-   React Router ([Site](https://reactrouter.com/en/main) | [License](https://github.com/remix-run/react-router))
+-   Babel ([Site](https://babeljs.io/) | [License](https://github.com/babel/babel/blob/main/LICENSE)
+-   Webpack ([Site](https://webpack.js.org/) | [License](https://github.com/webpack/webpack/blob/main/LICENSE))
