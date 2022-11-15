@@ -16,7 +16,8 @@ import { Apartment } from './apartments/apartment.entity';
     // TypeOrmModule.forRoot(getTypeOrmConfig()),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      // localhost
+      host: 'postgres',
       port: 5432,
       username: 'postgres',
       password: '1234',
