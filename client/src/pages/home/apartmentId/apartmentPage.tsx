@@ -17,8 +17,6 @@ const ApartmentPage = () => {
         queryFn: () => fetchOneApartment(apartmentId),
     });
 
-    console.log(status);
-
     return (
         <>
             <Header />

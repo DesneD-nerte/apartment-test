@@ -22,7 +22,7 @@ const ApartmentList = () => {
     return (
         <div>
             <ControlPanel setPage={setPage}></ControlPanel>
-            <div className="container mt-3 mb-3">
+            <div className="container pt-3 pb-3">
                 <div className="row g-3">
                     {pageApartments?.length ? (
                         pageApartments.map((oneApartment) => {
@@ -32,9 +32,15 @@ const ApartmentList = () => {
                         <div className="d-flex justify-content-center">Квартир не найдено</div>
                     )}
                 </div>
-                <div className="mt-3">
-                    <Pagination paginationLength={paginationLength} page={page} setPage={setPage} />
-                </div>
+                {pageApartments?.length ? (
+                    <div className="mt-3">
+                        <Pagination
+                            paginationLength={paginationLength}
+                            page={page}
+                            setPage={setPage}
+                        />
+                    </div>
+                ) : null}
             </div>
         </div>
     );
