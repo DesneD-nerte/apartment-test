@@ -22,6 +22,7 @@ export class ApartmentRepository {
     } else {
       apartmentList = await apartmentRepository.find();
     }
+
     return apartmentList;
   }
 
