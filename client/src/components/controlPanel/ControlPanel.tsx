@@ -41,7 +41,7 @@ interface ControlPanelProps {
     setPage: Dispatch<SetStateAction<number>>;
 }
 
-const ControlPanel = ({ setPage }: ControlPanelProps) => {
+const ControlPanel = React.memo(function ControlPanel({ setPage }: ControlPanelProps) {
     const [priceStart, setPriceStart] = useState("");
     const [priceEnd, setPriceEnd] = useState("");
     const debouncedPriceStart = useDebounce(priceStart);
@@ -139,6 +139,6 @@ const ControlPanel = ({ setPage }: ControlPanelProps) => {
             {openModal && <AdditionalModal setOpenModal={setOpenModal}></AdditionalModal>}
         </div>
     );
-};
+});
 
 export default ControlPanel;

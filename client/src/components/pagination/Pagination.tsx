@@ -7,7 +7,7 @@ interface PaginationProps {
     setPage: Dispatch<SetStateAction<number>>;
 }
 
-const Pagination = (props: PaginationProps) => {
+const Pagination = React.memo(function Pagination(props: PaginationProps) {
     const { paginationLength, page, setPage } = props;
 
     const handleBack = () => {
@@ -51,6 +51,6 @@ const Pagination = (props: PaginationProps) => {
             </ul>
         </nav>
     );
-};
+});
 
 export default Pagination;

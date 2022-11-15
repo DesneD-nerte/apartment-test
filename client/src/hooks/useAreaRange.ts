@@ -30,7 +30,6 @@ const useAreaRange = () => {
     }, [area]);
 
     const totalEnd = useMemo(() => {
-        console.log(123);
         if (area.areaTotal.totalEnd == Number.MAX_VALUE) {
             return "";
         }

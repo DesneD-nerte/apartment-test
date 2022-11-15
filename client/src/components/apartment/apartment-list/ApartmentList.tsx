@@ -29,7 +29,7 @@ const ApartmentList = () => {
                             return <ApartmentItem key={oneApartment.id} {...oneApartment} />;
                         })
                     ) : (
-                        <div>Квартир не найдено</div>
+                        <div className="d-flex justify-content-center">Квартир не найдено</div>
                     )}
                 </div>
                 <div className="mt-3">
