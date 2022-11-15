@@ -1,7 +1,7 @@
 ## Running the app
 
 ```bash
-# docker
+# docker (Completely Ready to work)
 $ docker-compose up
 
 # client
