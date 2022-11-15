@@ -1,0 +1,148 @@
+#figura {
+    position: relative;
+    width: 817px;
+    height: 845px;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 0px auto;
+    overflow: hidden;
+    background-color: white;
+}
+#figura::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("/public/plan.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.4;
+    width: 100%;
+    height: 100%;
+}
+
+#capaRecorte {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    object-fit: contain;
+}
+
+#imagen {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: crosshair;
+    background-repeat: no-repeat;
+    object-fit: contain;
+}
+
+#figura area {
+    display: block;
+}
+
+#figura area:nth-of-type(1):hover ~ #capaRecorte {
+    -webkit-clip-path: polygon(422px 635px, 817px 644px, 817px 845px, 360px 845px, 360px 700px);
+    clip-path: polygon(422px 635px, 817px 644px, 817px 845px, 360px 845px, 360px 700px);
+}
+
+#figura area:nth-of-type(2):hover ~ #capaRecorte {
+    -webkit-clip-path: polygon(100px 555px, 365px 555px, 360px 845px, 100px 845px);
+    clip-path: polygon(100px 555px, 365px 555px, 360px 845px, 100px 845px);
+}
+
+#figura area:nth-of-type(3):hover ~ #capaRecorte {
+    -webkit-clip-path: polygon(100px 365px, 365px 365px, 365px 560px, 95px 560px);
+    clip-path: polygon(100px 365px, 365px 365px, 365px 560px, 95px 560px);
+}
+
+#figura area:nth-of-type(4):hover ~ #capaRecorte {
+    -webkit-clip-path: polygon(
+        105px 190px,
+        285px 190px,
+        285px 250px,
+        362px 250px,
+        362px 375px,
+        100px 375px,
+        100px 290px,
+        105px 290px
+    );
+    clip-path: polygon(
+        105px 190px,
+        285px 190px,
+        285px 250px,
+        362px 250px,
+        362px 375px,
+        100px 375px,
+        100px 290px,
+        105px 290px
+    );
+}
+
+#figura area:nth-of-type(5):hover ~ #capaRecorte {
+    -webkit-clip-path: polygon(
+        0px 0px,
+        510px 0px,
+        510px 200px,
+        495px 200px,
+        495px 250px,
+        432px 250px,
+        432px 245px,
+        425px 245px,
+        425px 250px,
+        280px 250px,
+        280px 195px,
+        108px 195px,
+        108px 65px,
+        120px 65px
+    );
+    clip-path: polygon(
+        0px 0px,
+        510px 0px,
+        510px 200px,
+        495px 200px,
+        495px 250px,
+        432px 250px,
+        432px 245px,
+        425px 245px,
+        425px 250px,
+        280px 250px,
+        280px 195px,
+        108px 195px,
+        108px 65px,
+        120px 65px
+    );
+}
+
+#figura area:nth-of-type(6):hover ~ #capaRecorte {
+    -webkit-clip-path: polygon(
+        507px 35px,
+        718px 35px,
+        718px 467px,
+        509px 467px,
+        509px 308px,
+        432px 308px,
+        432px 250px,
+        497px 250px,
+        497px 202px,
+        508px 202px
+    );
+    clip-path: polygon(
+        505px 0px,
+        718px 0px,
+        718px 467px,
+        505px 467px,
+        505px 308px,
+        425px 308px,
+        425px 245px,
+        495px 245px,
+        495px 200px,
+        505px 200px
+    );
+}

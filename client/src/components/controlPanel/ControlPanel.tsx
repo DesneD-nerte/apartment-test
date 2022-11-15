@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useDebounce } from "../../hooks/useDebounce";
 import MySelect, { MySelectOptions } from "../../UI/MySelect/MySelect";
 import { changePrice, changeRooms, changeSort } from "./controlPanelSlice";
@@ -7,6 +7,7 @@ import NumberRange from "./NumberRange/NumberRange";
 import RoomRange from "./RoomRange/RoomRange";
 import "./ControlPanel.style.scss";
 import AdditionalModal from "./AdditionalModal/AdditionalModal";
+import { Link } from "react-router-dom";
 
 type SelectSort =
     | undefined
@@ -108,8 +109,13 @@ const ControlPanel = React.memo(function ControlPanel({ setPage }: ControlPanelP
                     </div>
                 </div>
 
-                <div className="row align-items-center justify-content-center mt-3">
-                    <div className="col-6 d-flex justify-content-center">
+                <div className="row align-items-center justify-content-around mt-3">
+                    <div className="col-4 d-flex justify-content-center">
+                        <Link className="control-button " to={"/plan"}>
+                            Просмотр плана
+                        </Link>
+                    </div>
+                    <div className="col-4 d-flex justify-content-center">
                         <button className="control-button" onClick={() => setOpenModal(true)}>
                             <div className="d-flex align-items-center">
                                 <svg
@@ -125,7 +131,7 @@ const ControlPanel = React.memo(function ControlPanel({ setPage }: ControlPanelP
                             </div>
                         </button>
                     </div>
-                    <div className="col-6 d-flex justify-content-center">
+                    <div className="col-4 d-flex justify-content-center">
                         {/* TODO We don't need this button, cuz we have automatic filter logic, but for the UI we may leave it */}
                         <button
                             className="control-button control-button__main"
