@@ -26,7 +26,7 @@ export const PlanPanel = () => {
 
     const paginationLength = useMemo(() => {
         if (data) {
-            return Math.ceil(data.length / 8);
+            return Math.ceil(data.length / 6);
         }
 
         return 0;
