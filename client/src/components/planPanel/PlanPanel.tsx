@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useMemo, useState } from "react";
-import { useFilter } from "../../hooks/useFilter";
-import { usePage } from "../../hooks/usePage";
 import { Apartment, fetchApartments } from "../apartment/Apartment.entity";
 import Pagination from "../pagination/Pagination";
-import OnePlanArea from "./onePlanArea";
+import OnePlanArea from "./OnePlanArea";
 
 export const PlanPanel = () => {
     const [floor, setFloor] = useState(1);
