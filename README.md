@@ -7,7 +7,7 @@ $ docker-compose up
 # client
 $ cd client => npm run start
 
-# server
+# server (need previously create db)
 $ cd server => npm run start:dev
 ```
 
