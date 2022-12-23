@@ -17,7 +17,7 @@ const Pagination = React.memo(function Pagination(props: PaginationProps) {
     const handleForward = () => {
         setPage((prevPage) => prevPage + 1);
     };
-
+    console.log(paginationLength);
     return (
         <nav>
             <ul className="pagination">

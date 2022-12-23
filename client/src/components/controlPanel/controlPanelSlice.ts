@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { MySelectOptions } from "../../UI/MySelect/MySelect";
 
-type SelectSort =
+export type SelectSort =
     | undefined
     | "PriceHighToLow"
     | "PriceLowToHigh"
     | "AreaLowToHigh"
     | "AreaHighToLow";
 
-interface PriceInput {
+export interface PriceInput {
     priceStart: number;
     priceEnd: number;
 }
 
-interface AreaInput {
+export interface AreaInput {
     areaTotal: {
         totalStart: number;
         totalEnd: number;
@@ -28,7 +28,7 @@ interface AreaInput {
     };
 }
 
-interface ControlPanelState {
+export interface ControlPanelState {
     sort: SelectSort;
     price: PriceInput;
     rooms: number[];
@@ -39,21 +39,21 @@ const initialState: ControlPanelState = {
     sort: undefined,
     price: {
         priceStart: 0,
-        priceEnd: 0,
+        priceEnd: Number.MAX_SAFE_INTEGER,
     },
     rooms: [],
     area: {
         areaTotal: {
             totalStart: 0,
-            totalEnd: Number.MAX_VALUE,
+            totalEnd: Number.MAX_SAFE_INTEGER,
         },
         areaLive: {
             liveStart: 0,
-            liveEnd: Number.MAX_VALUE,
+            liveEnd: Number.MAX_SAFE_INTEGER,
         },
         areaKitchen: {
             kitchenStart: 0,
-            kitchenEnd: Number.MAX_VALUE,
+            kitchenEnd: Number.MAX_SAFE_INTEGER,
         },
     },
 };
@@ -66,6 +66,9 @@ export const controlPanelSlice = createSlice({
             state.sort = action.payload;
         },
         changePrice: (state, action: { payload: PriceInput }) => {
+            if (action.payload.priceEnd == 0) {
+                action.payload.priceEnd = Number.MAX_SAFE_INTEGER;
+            }
             state.price = action.payload;
         },
         changeRooms: (state, action: { payload: number }) => {
@@ -77,13 +80,13 @@ export const controlPanelSlice = createSlice({
         },
         changeArea: (state, action: { payload: AreaInput }) => {
             if (action.payload.areaTotal.totalEnd == 0) {
-                action.payload.areaTotal.totalEnd = Number.MAX_VALUE;
+                action.payload.areaTotal.totalEnd = Number.MAX_SAFE_INTEGER;
             }
             if (action.payload.areaLive.liveEnd == 0) {
-                action.payload.areaLive.liveEnd = Number.MAX_VALUE;
+                action.payload.areaLive.liveEnd = Number.MAX_SAFE_INTEGER;
             }
             if (action.payload.areaKitchen.kitchenEnd == 0) {
-                action.payload.areaKitchen.kitchenEnd = Number.MAX_VALUE;
+                action.payload.areaKitchen.kitchenEnd = Number.MAX_SAFE_INTEGER;
             }
 
             state.area = { ...state.area, ...action.payload };

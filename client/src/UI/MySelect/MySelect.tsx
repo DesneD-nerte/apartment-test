@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 import "./MySelect.style.scss";
 
 export interface MySelectOptions<T> {
@@ -13,6 +15,7 @@ interface MySelectProps<T> {
 
 const MySelect = <T extends unknown>({ optionsArray, handleChangeSort }: MySelectProps<T>) => {
     const [openedList, setOpenedList] = useState(false);
+    const [pickedSort, setPickedSort] = useState<string>("По умолчанию");
 
     const refDiv = useRef<HTMLDivElement>(null);
 
@@ -34,8 +37,9 @@ const MySelect = <T extends unknown>({ optionsArray, handleChangeSort }: MySelec
         };
     }, [openedList]);
 
-    const handleItem = (value?: T) => {
-        handleChangeSort(value);
+    const handleItem = (oneOption: MySelectOptions<T>) => {
+        handleChangeSort(oneOption.option);
+        setPickedSort(oneOption.name.split(" ").slice(0, 2).join(" ").replace(",", ""));
         setOpenedList(false);
     };
 
@@ -57,7 +61,7 @@ const MySelect = <T extends unknown>({ optionsArray, handleChangeSort }: MySelec
                             <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
                         </svg>
                     </div>
-                    <div className="d-none d-sm-block ms-2 me-2">По умолчанию</div>
+                    <div className="d-none d-sm-block ms-2 me-2">{pickedSort}</div>
                     <div>
                         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                             <path d="M6.882 9.471a.748.748 0 0 1 1.057 0l3.884 3.876a.25.25 0 0 0 .354 0l3.884-3.876a.748.748 0 0 1 1.057 1.058l-4.411 4.41a1 1 0 0 1-1.414 0l-4.411-4.41a.748.748 0 0 1 0-1.058z"></path>
@@ -68,14 +72,14 @@ const MySelect = <T extends unknown>({ optionsArray, handleChangeSort }: MySelec
 
             {openedList && (
                 <ul className="select-container" tabIndex={0}>
-                    {optionsArray.map((oneOptions, index) => {
+                    {optionsArray.map((oneOption, index) => {
                         return (
                             <li className="select-container__item" key={index}>
                                 <button
-                                    onClick={() => handleItem(oneOptions.option)}
+                                    onClick={() => handleItem(oneOption)}
                                     className="select-container__button"
                                 >
-                                    {oneOptions.name}
+                                    {oneOption.name}
                                 </button>
                             </li>
                         );

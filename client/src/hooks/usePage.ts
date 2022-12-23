@@ -1,29 +1,21 @@
-import React, { Dispatch, SetStateAction, useMemo } from "react";
-import { Apartment } from "../components/apartment/Apartment.entity";
-import { useFilter } from "./useFilter";
+import React, { useMemo } from "react";
+import { fetchList } from "../components/apartment/Apartment.entity";
 
 interface usePageProps {
-    page: number;
-    apartments?: Apartment[];
+    fetchList: fetchList;
+    itemsPerPage: number;
 }
 
-export const usePage = ({ page, apartments }: usePageProps) => {
-    const filteredApartments = useFilter({ apartments: apartments });
+export const usePage = ({ fetchList, itemsPerPage }: usePageProps) => {
+    const { contentRange, data } = fetchList;
 
     const paginationLength = useMemo(() => {
-        if (filteredApartments) {
-            return Math.ceil(filteredApartments.length / 8);
+        if (data) {
+            return Math.ceil(contentRange / itemsPerPage);
         }
 
         return 0;
-    }, [filteredApartments]);
+    }, [data]);
 
-    const pageApartments = useMemo(() => {
-        const fromPosition = (page - 1) * 8;
-        const toPosition = (page - 1) * 8 + 8;
-
-        return filteredApartments?.slice(fromPosition, toPosition);
-    }, [page, filteredApartments]);
-
-    return { paginationLength, pageApartments };
+    return { paginationLength, apartments: data };
 };

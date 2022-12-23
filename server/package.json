@@ -27,6 +27,7 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^9.0.1",
     "dotenv": "^16.0.3",
+    "module-alias": "^2.2.2",
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
@@ -72,5 +73,11 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "_moduleAliases": {
+    "@root/": "src",
+    "@interfaces/": "src/interfaces",
+    "@interceptors/": "src/interceptors",
+    "@items/": "src/items"
   }
 }

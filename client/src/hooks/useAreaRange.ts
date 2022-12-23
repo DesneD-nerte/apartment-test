@@ -18,7 +18,7 @@ const useAreaRange = () => {
             return "";
         }
 
-        return area.areaTotal.totalEnd.toString();
+        return area.areaLive.liveStart.toString();
     }, [area]);
 
     const kitchenStart = useMemo(() => {
@@ -26,11 +26,11 @@ const useAreaRange = () => {
             return "";
         }
 
-        return area.areaTotal.totalStart.toString();
+        return area.areaKitchen.kitchenStart.toString();
     }, [area]);
 
     const totalEnd = useMemo(() => {
-        if (area.areaTotal.totalEnd == Number.MAX_VALUE) {
+        if (area.areaTotal.totalEnd == Number.MAX_SAFE_INTEGER) {
             return "";
         }
 
@@ -38,19 +38,19 @@ const useAreaRange = () => {
     }, [area]);
 
     const liveEnd = useMemo(() => {
-        if (area.areaLive.liveEnd == Number.MAX_VALUE) {
+        if (area.areaLive.liveEnd == Number.MAX_SAFE_INTEGER) {
             return "";
         }
 
-        return area.areaTotal.totalEnd.toString();
+        return area.areaLive.liveEnd.toString();
     }, [area]);
 
     const kitchenEnd = useMemo(() => {
-        if (area.areaKitchen.kitchenEnd == Number.MAX_VALUE) {
+        if (area.areaKitchen.kitchenEnd == Number.MAX_SAFE_INTEGER) {
             return "";
         }
 
-        return area.areaTotal.totalEnd.toString();
+        return area.areaKitchen.kitchenEnd.toString();
     }, [area]);
 
     return [totalStart, liveStart, kitchenStart, totalEnd, liveEnd, kitchenEnd];

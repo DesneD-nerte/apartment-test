@@ -1,4 +1,6 @@
 import axios from "axios";
+import { AreaInput, PriceInput } from "../controlPanel/controlPanelSlice";
+import { SelectSort } from "../../../../server/src/apartments/apartment.interfaces";
 
 const backendApi = process.env.BACKEND_API_URL;
 
@@ -28,13 +30,30 @@ export interface ApartmentDTO {
 
 export type ApartmentItemCard = Omit<Apartment, "posOnFloor">;
 
-export const fetchApartments = async (page?: number): Promise<Apartment[]> => {
-    const res = await axios.get(`${backendApi}/apartments`, { params: { page: page } });
-    const result: ApartmentDTO[] = res.data;
+export interface fetchList {
+    contentRange: number;
+    data: Apartment[];
+}
 
-    return result.map((oneApartment) => {
+export const fetchApartments = async (
+    page?: number,
+    price?: PriceInput,
+    rooms?: number[],
+    area?: AreaInput,
+    sort?: SelectSort
+): Promise<fetchList> => {
+    const res = await axios.get(`${backendApi}/apartments`, {
+        params: { page, price, rooms, area, sort },
+    });
+
+    const apartments: ApartmentDTO[] = res.data;
+    const contentRange = Number(res.headers["content-range"]);
+
+    const transformedApartments = apartments.map((oneApartment) => {
         return transformDTO(oneApartment);
     });
+
+    return { contentRange: contentRange, data: transformedApartments };
 };
 
 export const fetchOneApartment = async (apartmentId: string): Promise<Apartment> => {

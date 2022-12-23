@@ -16,7 +16,7 @@ export const PlanPanel = () => {
 
     useEffect(() => {
         setFilteredApartments(() => {
-            return data?.filter((oneApartment) => {
+            return data?.data.filter((oneApartment) => {
                 return oneApartment.floor == floor;
             });
         });
@@ -24,7 +24,7 @@ export const PlanPanel = () => {
 
     const paginationLength = useMemo(() => {
         if (data) {
-            return Math.ceil(data.length / 6);
+            return Math.ceil(data.data.length / 6);
         }
 
         return 0;

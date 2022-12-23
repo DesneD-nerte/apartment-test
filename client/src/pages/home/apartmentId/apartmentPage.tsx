@@ -21,7 +21,7 @@ const ApartmentPage = () => {
         <>
             <Header />
             <main>
-                <div className="pt-3 pb-3">
+                <div className="d-flex justify-content-center pt-3 pb-3">
                     {data ? <ApartmentDetail oneApartment={data} /> : <div>Check your request</div>}
                 </div>
             </main>
